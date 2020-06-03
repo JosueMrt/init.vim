@@ -121,7 +121,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 " Prettier 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nmap <C-s> :Prettier<CR>
 
 " AutoSave 
 let g:auto_save = 1  " enable AutoSave on Vim startup
