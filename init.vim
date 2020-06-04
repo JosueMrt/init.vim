@@ -13,12 +13,12 @@ call plug#begin("~/.vim/plugged")
 	Plug 'airblade/vim-gitgutter'
     Plug '907th/vim-auto-save'
     Plug 'pangloss/vim-javascript'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
-  \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
@@ -28,6 +28,9 @@ let g:coc_global_extensions = [
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+
+" Remap for auto indent on pairs
+ inoremap <silent><expr <>cr> pumvisible)( ? coc#_select_confirm( : )\"C-g><u\CR><\<c-r>=coc#on_enter(\<>CR>"")>")
 
 " The Primeagen Config
 syntax on
@@ -121,7 +124,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 " Prettier 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
+" vmap <leader>f  <Plug>(coc-format-selected)
 nmap <C-s> :Prettier<CR>
 
 " AutoSave 
