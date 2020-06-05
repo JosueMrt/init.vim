@@ -29,9 +29,6 @@ let g:coc_global_extensions = [
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 
-" Remap for auto indent on pairs
- inoremap <silent><expr <>cr> pumvisible)( ? coc#_select_confirm( : )\"C-g><u\CR><\<c-r>=coc#on_enter(\<>CR>"")>")
-
 " The Primeagen Config
 syntax on
 
@@ -95,10 +92,27 @@ set splitbelow
 tnoremap <Esc> <C-\><C-n>
 " start terminal in insert mode
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" open terminal on ctrl+n
+
+" toggle terminal on ctrl+n
+let g:terminal_is_open = 0
+let g:terminal_has_init = 0
+
 function! OpenTerminal()
-  split term://bash
-  resize 10
+  if g:terminal_is_open
+    hide
+    let g:terminal_is_open = 0
+  else
+    if g:terminal_has_init
+      sb 2
+      resize 10
+      let g:terminal_is_open = 1
+    else
+      split term://bash
+      resize 10
+      let g:terminal_is_open = 1
+      let g:terminal_has_init = 1
+    endif
+  endif
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 
